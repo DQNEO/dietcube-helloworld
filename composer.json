@@ -1,0 +1,5 @@
+{
+    "require": {
+        "dietcube/dietcube": "^1.0"
+    }
+}
