@@ -2,23 +2,26 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Pimple\Container;
+use Dietcube\Application;
+use Dietcube\RouteInterface;
+use Dietcube\Dispatcher;
 
-class Application extends \Dietcube\Application
+class MyApplication extends Application
 {
     public function config(Container $c)
     {
     }
 }
 
-class Route implements \Dietcube\RouteInterface
+class Route implements RouteInterface
 {
     public function definition(Container $c)
     {
     }
 }
 
-$app = new Application(__DIR__ . '/..', 'development');
-$dispatcher = new \Dietcube\Dispatcher($app);
+$app = new MyApplication(__DIR__ . '/..', 'development');
+$dispatcher = new Dispatcher($app);
 $dispatcher->boot();
 $response = $dispatcher->executeAction(function () {
     return 'hello action';
