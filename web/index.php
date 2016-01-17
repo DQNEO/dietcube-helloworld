@@ -15,25 +15,18 @@ namespace {
     {
         public function definition(Container $c)
         {
-            return [
-                ['GET', '/', 'Example::hello'],
-            ];
         }
     }
 
 }
 
-namespace Controller {
-
-    class ExampleController extends \Dietcube\Controller
-    {
-        public function hello()
-        {
-            return 'hello world';
-        }
-    }
-}
 
 namespace {
-    \Dietcube\Dispatcher::invoke('Application', __DIR__ . '/..', 'development');
+    $app = new Application(__DIR__ . '/..', 'development');
+    $dispatcher = new \Dietcube\Dispatcher($app);
+    $dispatcher->boot();
+    $response = $dispatcher->executeAction(function(){
+        return 'hello action';
+    },[], false);
+    echo $response;
 }
